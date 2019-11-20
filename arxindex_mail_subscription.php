@@ -1,5 +1,9 @@
 <?php
 
+header("Access-Control-Allow-Origin: https://frankovacevich.github.io/");
+header("Access-Control-Allow-Headers: HASH, Content-Type");
+header("Access-Control-Allow-Methods: GET");
+
 if(!isset($_GET["email"])) die();
 $email = $_GET["email"];
 

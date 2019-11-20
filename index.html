@@ -59,7 +59,7 @@
 	function button_subscribe_click(){
 		var extra = "?email=" + subscribe_email_input.value;
 		
-		/*var xmlhttp = new XMLHttpRequest();
+		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){ if (this.readyState == 4 && this.status == 200){
 			alert(this.response);
 			subscribe_email_input.value = ""
@@ -67,14 +67,7 @@
 
 		
 		xmlhttp.open("GET","https://www.coupsh.com/other/arxindex_mail_subscription.php" + extra ,true);
-		xmlhttp.send();*/
-		
-		const userAction = async () => {
-		  const response = await fetch("https://www.coupsh.com/other/arxindex_mail_subscription.php" + extra);
-		  //const myJson = await response.json(); //extract JSON from the http response
-		  // do something with myJson
-		  alert("HOLA");
-		}
+		xmlhttp.send();
 	}
 	</script>
 
