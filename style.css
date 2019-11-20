@@ -11,6 +11,10 @@ html,body{
   min-width: 320px;
 }
 
+.alert{
+  border-radius: 0;
+}
+
 h1{
   font-size: 80px;
   font-family: 'Gugi', cursive;
