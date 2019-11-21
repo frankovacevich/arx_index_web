@@ -26,12 +26,12 @@
 
 						<h1>ARX</h1>
 
-						<h2>¿Por qué buscar la aguja en el pajar, cuando puede comprar todo el pajar? ARX es un índice de criptomonedas en pesos argentinos que permite diversificar su inversión fácilmente. Mientras, usted se relaja y disfruta de sus actividades favoritas.</h2>
+						<h2 style="padding-right: 20px">¿Por qué buscar la aguja en el pajar, cuando puede comprar todo el pajar? ARX es un índice de criptomonedas en pesos argentinos que permite diversificar su inversión fácilmente. Nosotros elegimos las mejores cryptomonedas y balanceamos su portfolio. Mientras, usted se relaja y disfruta de sus actividades favoritas.</h2>
 
 						<div class="input-group mb-3">
 							<input onkeypress="if(event.keyCode==13) button_subscribe_click()" id="subscribe_email_input" type="text" class="form-control" placeholder="Subscríbite a las novedades" aria-label="Subscríbite a las novedades" aria-describedby="button-addon2">
 							<div class="input-group-append">
-								<button onclick="button_subscribe_click()" class="btn btn-primary" type="button" style="background-color: #21CE99; border-color: #21CE99">Subscribirse</button>
+								<button onclick="button_subscribe_click()" id="subscribe_button" class="btn btn-primary" type="button" style="background-color: #21CE99; border-color: #21CE99">Subscribirse</button>
 							</div>
 						</div>
 
@@ -52,8 +52,17 @@
 			</div>
 		</div>
 
+		<!-- ALERT SUCCESS EMAIL SUBSCRIPTION -->
 		<div id="alert_subscription" class="alert alert-success alert-dismissible fade show" role="alert">
 			<strong>¡Gracias por subscribirte 🎉!</strong> Pronto recibirás un correo de nuestra parte 😄.
+			<button type="button" class="close" aria-label="Close">
+				<span onclick='$(".alert").hide()' aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<!-- ALERT FAILED EMAIL SUBSCRIPTION-->
+		<div id="alert_failed" class="alert alert-danger alert-dismissible fade show" role="alert">
+			<a>Correo electrónico inválido</a>
 			<button type="button" class="close" aria-label="Close">
 				<span onclick='$(".alert").hide()' aria-hidden="true">&times;</span>
 			</button>
@@ -61,16 +70,24 @@
 	</body>
 
 	<script>
-	$(".alert").hide()
+	$("#alert_subscription").hide()
+	$("#alert_failed").hide()
 	var subscribe_email_input  = document.getElementById("subscribe_email_input");
 
 	function button_subscribe_click(){
 		var extra = "?email=" + subscribe_email_input.value;
-		
+		$('#subscribe_button').prop('disabled', true);
+
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function(){ if (this.readyState == 4 && this.status == 200){
-			subscribe_email_input.value = ""
-			$(".alert").show()
+			$('#subscribe_button').prop('disabled', false);
+			//alert(this.response);
+			if (this.response == "_OK_"){
+				subscribe_email_input.value = ""
+				$("#alert_subscription").show()
+			} else {
+				$("#alert_failed").show()
+			}
 		} }
 
 		
